@@ -26,7 +26,7 @@ public class Runner {
 		Connection cn = null;
 		Statement st = null;
 		ResultSet rs = null;
-		// loading driver
+		
 		try {
 			frequencies = new ArrayList<>();
 			Class.forName("org.gjt.mm.mysql.Driver");
@@ -63,13 +63,26 @@ public class Runner {
 			}
 			
 			
-		} catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException  | SQLException e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				if (rs != null && !rs.isClosed()) {
+					rs.close();
+				}
+				if (st != null) {
+					st.close();
+				}
+				if (cn != null) {
+					cn.close();
+				}
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+			
 		}
 		
-		 catch (SQLException e) {
- 			e.printStackTrace();
-		}
+		 
 
 
 	}
