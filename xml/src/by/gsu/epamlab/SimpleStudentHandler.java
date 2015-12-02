@@ -39,10 +39,8 @@ public class SimpleStudentHandler extends DefaultHandler{
 	
 	@Override
 	public void startElement(String uri, String localName, String qName, Attributes attrs) throws SAXException {
-		
-		
-		thisElement = qName.replaceAll("tns:","").toUpperCase();
-		
+
+		thisElement = localName.toUpperCase();
 		switch(Tags.valueOf(thisElement)){
 			case STUDENT: 
 				isStudent = true;
