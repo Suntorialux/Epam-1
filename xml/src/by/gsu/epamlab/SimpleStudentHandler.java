@@ -50,8 +50,7 @@ public class SimpleStudentHandler extends DefaultHandler{
 				break;
 				
 			case TEST: 
-				
-					
+	
 					buildResult = new BuildResult(attrs.getValue(0), attrs.getValue(1), attrs.getValue(2),login);
 					try {
 						result = buildResult.getResult();
@@ -62,16 +61,7 @@ public class SimpleStudentHandler extends DefaultHandler{
 					results.add(result);
 			
 				break;
-			
 		}
-			
-		
-		
-		
-		
-		
-		
-		
 	}
 	
 
@@ -86,16 +76,14 @@ public class SimpleStudentHandler extends DefaultHandler{
 			break;
 		}
 	}
+	
 
 	@Override
 	public void endElement(String uri, String localName, String qName) {
 		if (qName.equals("student")){
 		
 				isStudent = false;
-				
 		}
-		
-		
 	}
 	
 	@Override
