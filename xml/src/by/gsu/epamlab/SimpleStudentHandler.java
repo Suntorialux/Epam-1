@@ -59,6 +59,8 @@ public class SimpleStudentHandler extends DefaultHandler{
 					results.add(result);
 			
 				break;
+		default:
+			break;
 		}
 	}
 	
@@ -72,15 +74,22 @@ public class SimpleStudentHandler extends DefaultHandler{
 				login = new String(ch,start,length);
 			}
 			break;
+		default:
+			break;
 		}
 	}
 	
 
 	@Override
 	public void endElement(String uri, String localName, String qName) {
-		if (qName.equals("student")){
-		
-				isStudent = false;
+		thisElement = localName.toUpperCase();
+		switch(Tags.valueOf(thisElement)){
+		case STUDENT: 
+			isStudent = false;
+			
+			break;
+		default:
+			break;
 		}
 	}
 	

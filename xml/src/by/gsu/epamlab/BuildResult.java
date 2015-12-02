@@ -1,7 +1,7 @@
 package by.gsu.epamlab;
 
 import java.text.ParseException;
-import java.util.Date;
+
 
 public class BuildResult {
 	private  String login;
