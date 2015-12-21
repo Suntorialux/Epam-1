@@ -12,7 +12,7 @@ public class ResultsLoader {
 	
 	IResultDAO reader;
 	
-	private SqlConnector sqlConnector;
+	private ConnectDB sqlConnector;
 	private static Connection cn;
 	private Statement st;
 	private ResultSet rs;
@@ -26,29 +26,56 @@ public class ResultsLoader {
             "(loginId, testId, dat, mark) VALUES (?,?,?,?)";
 	
 	
-	public static void loadResults(IResultDAO reader) throws SQLException, ClassNotFoundException{
+	public static void loadResults(IResultDAO reader){
 		
-		cn = SqlConnector.getInstans().getCn();
-		PreparedStatement psInsertLogin = cn.prepareStatement(INSERT_LOGIN);
-		PreparedStatement psSelectLogin = cn.prepareStatement(SELECT_LOGIN);	
-		PreparedStatement psInsertTest = cn.prepareStatement(INSERT_TEST);
-		PreparedStatement psSelectTest = cn.prepareStatement(SELECT_TEST);
-		PreparedStatement psCreateNewResult = cn.prepareStatement(CREATE_NEW_RESULT);
+		Connection cn = null;
+		PreparedStatement psInsertLogin = null;
+		PreparedStatement psSelectLogin = null;
+		PreparedStatement psInsertTest = null;
+		PreparedStatement psSelectTest = null;
+		PreparedStatement psCreateNewResult = null;
+		
+		try {
+			cn = ConnectDB.getConnection();
+			psInsertLogin = cn.prepareStatement(INSERT_LOGIN);
+			psSelectLogin = cn.prepareStatement(SELECT_LOGIN);
+			psInsertTest = cn.prepareStatement(INSERT_TEST);
+			psSelectTest = cn.prepareStatement(SELECT_TEST);
+			psCreateNewResult = cn.prepareStatement(CREATE_NEW_RESULT);
+			
+			while(reader.hasResult()) { 
+			      Result result = reader.nextResult(); 
+			      String login = result.getLogin(); 
+			      String test = result.getTest(); 
+			      int idLogin =  getId(login,psSelectLogin,psInsertLogin);
+			      int idTest = getId(test,psSelectTest,psInsertTest);
+			      
+			      psCreateNewResult.setInt(1, idLogin);
+			      psCreateNewResult.setInt(2, idTest);
+			      psCreateNewResult.setDate(3,result.getDate());
+			      psCreateNewResult.setInt(4, result.getMark());
+			      psCreateNewResult.executeUpdate();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			reader.closeReader();
+
+			ConnectDB.closePreparedStatement(psInsertLogin);
+			ConnectDB.closePreparedStatement(psInsertTest);
+			ConnectDB.closePreparedStatement(psSelectLogin);
+			ConnectDB.closePreparedStatement(psSelectTest);
+			//ConnectDB.closeConnection(cn);
+		}
+			
+		
 		
 			
-		while(reader.hasResult()) { 
-		      Result result = reader.nextResult(); 
-		      String login = result.getLogin(); 
-		      String test = result.getTest(); 
-		      int idLogin =  getId(login,psSelectLogin,psInsertLogin);
-		      int idTest = getId(test,psSelectTest,psInsertTest);
-		      
-		      psCreateNewResult.setInt(1, idLogin);
-		      psCreateNewResult.setInt(2, idTest);
-		      psCreateNewResult.setDate(3,result.getDate());
-		      psCreateNewResult.setInt(4, result.getMark());
-		      psCreateNewResult.executeUpdate();
-		}
+		
 		  
     } 
 	
