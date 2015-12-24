@@ -4,8 +4,8 @@ import by.gsu.epamlab.model.Result;
 
 public class ResultImplBuffer implements IResultDAO{
 	
-	Buffer buffer;
-	IResultDAO reader;
+	private Buffer buffer;
+	private IResultDAO reader;
 	
 	
 	public ResultImplBuffer(Buffer bufer, IResultDAO reader) {

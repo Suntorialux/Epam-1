@@ -12,7 +12,7 @@ public class Buffer {
        
         while (empty) {
             try {
-                wait(1000);
+                wait();
             } catch (InterruptedException e) {}
         }
         empty = true;
@@ -26,7 +26,7 @@ public class Buffer {
        
         while (!empty) {
             try { 
-                wait(1000);
+                wait();
             } catch (InterruptedException e) {}
         }
         

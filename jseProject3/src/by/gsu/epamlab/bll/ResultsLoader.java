@@ -41,6 +41,8 @@ public class ResultsLoader {
 			psCreateNewResult = cn.prepareStatement(CREATE_NEW_RESULT);
 			
 			while(reader.hasResult()) { 
+				
+				
 			      Result result = reader.nextResult(); 
 			      String login = result.getLogin(); 
 			      String test = result.getTest(); 

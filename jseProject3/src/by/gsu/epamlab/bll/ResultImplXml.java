@@ -1,7 +1,6 @@
 package by.gsu.epamlab.bll;
 
 import java.io.IOException;
-import java.util.Iterator;
 
 import by.gsu.epamlab.model.Result;
 
@@ -9,8 +8,8 @@ public class ResultImplXml implements IResultDAO {
 
 
 	boolean flag = true;
-	String nameFile;
-	Buffer buffer;
+	private String nameFile;
+	private Buffer buffer;
 	boolean isResult;
 			
 	public ResultImplXml(String nameFile,Buffer buffer) throws IOException {
@@ -29,7 +28,6 @@ public class ResultImplXml implements IResultDAO {
 				
 				saxBuilder.buildListResults(nameFile);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			flag = false;
@@ -47,7 +45,7 @@ public class ResultImplXml implements IResultDAO {
 	public boolean hasResult() {
 		
 		
-		return true;
+		return !buffer.hasResult();
 	}
 
 	@Override

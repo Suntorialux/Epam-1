@@ -66,8 +66,8 @@ public class RunnerLogic {
 			} catch (IOException e) {
 				System.err.println("file is not found and the base has not been updated");
 			}
-			//printResults(resultFactory);
-			//printAverageMarks(resultFactory);
+			printResults(resultFactory);
+			printAverageMarks(resultFactory);
 			
 			try {
 				List<Result> results = getCurrentMonthResults(resultFactory);

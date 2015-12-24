@@ -1,7 +1,6 @@
 package by.gsu.epamlab.bll;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import org.xml.sax.helpers.DefaultHandler;
 import org.xml.sax.Attributes;
@@ -55,6 +54,7 @@ public class ResultHandler extends DefaultHandler{
 			Date date = Date.valueOf(dateString);
 			String markString = attrs.getValue(MARK).trim();
 			result = new DecimalResult(login, nameTest, date, markString);
+			
 			buffer.setResult(result);	
 		}
 	}
