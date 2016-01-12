@@ -12,7 +12,7 @@
 	<jsp:useBean id="reader" class="by.gsu.epamlab.services.FileReader" />
 	<c:set target="${reader}" property="fileName" value="${initParam.filename}" />
 	
-	<form name="test2" ACTION="controller">
+	<form name="test2" ACTION="controller" method="POST">
 		<c:forEach  items="${reader.len}" var="inp">
 			<input name="flag" type="checkbox" value="${inp}">&nbsp;
 			${inp}<br>
