@@ -28,21 +28,21 @@ public class Controller extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
+		
 		String[] flags = request.getParameterValues("flag");
 		Double sum = 0.0;
 		for(int i=0; i<flags.length;i++) {
 			sum+=Double.parseDouble(flags[i]);
 		}
-		out.println(sum);
+		request.setAttribute("sum", sum);
+		request.getRequestDispatcher("/result.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-
+		doGet(request, response);
 
 	}
 
