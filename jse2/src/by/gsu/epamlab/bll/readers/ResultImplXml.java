@@ -1,8 +1,10 @@
-package by.gsu.epamlab.bll;
+package by.gsu.epamlab.bll.readers;
 
 import java.io.IOException;
 import java.util.Iterator;
 
+import by.gsu.epamlab.bll.IResultDAO;
+import by.gsu.epamlab.bll.ResultsSAXBuilder;
 import by.gsu.epamlab.model.Result;
 
 public class ResultImplXml implements IResultDAO {

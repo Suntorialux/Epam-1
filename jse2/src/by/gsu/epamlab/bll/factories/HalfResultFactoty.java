@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.sql.Date;
 
 import by.gsu.epamlab.bll.IResultDAO;
-import by.gsu.epamlab.bll.ResultImplCsv;
+import by.gsu.epamlab.bll.readers.ResultImplCsv;
 import by.gsu.epamlab.model.HalfResult;
 import by.gsu.epamlab.model.Result;
 

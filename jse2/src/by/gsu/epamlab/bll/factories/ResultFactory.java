@@ -9,6 +9,7 @@ import java.util.Locale;
 import by.gsu.epamlab.bll.*;
 //import by.gsu.epamlab.ResultImplCsv;
 //import by.gsu.epamlab.beans.Result;
+import by.gsu.epamlab.bll.readers.ResultImplCsv;
 
 public class ResultFactory {
 	

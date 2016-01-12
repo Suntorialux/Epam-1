@@ -1,4 +1,4 @@
-package by.gsu.epamlab.bll;
+package by.gsu.epamlab.bll.readers;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import by.gsu.epamlab.model.Constans;
 import by.gsu.epamlab.model.Result;
+import by.gsu.epamlab.bll.IResultDAO;
 import by.gsu.epamlab.bll.factories.ResultFactory;
 
 public class ResultImplCsv implements IResultDAO{

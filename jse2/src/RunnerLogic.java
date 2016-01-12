@@ -49,6 +49,7 @@ public class RunnerLogic {
 			} catch (IOException e) {
 				System.err.println("file is not found and the base has not been updated");
 			}
+			
 			printResults(resultFactory);
 			printAverageMarks(resultFactory);
 			
@@ -66,7 +67,13 @@ public class RunnerLogic {
 		} finally {
 			ConnectDB.closeConnection();
 		}
-	}		
+	}
+	
+	private static void printList(List<Result> list){
+		for (Result tmp : list){
+			System.out.println(tmp);
+		}
+	}
 			
 	
 	private static void printResults (ResultFactory resultFactory) throws ConnectionException {
@@ -74,9 +81,9 @@ public class RunnerLogic {
 		PreparedStatement ps = null;
 		ResultSet resultSet = null;
 		try {
-			ps=connection.prepareStatement(GET_FIELD_FROM_TABLE);
+			ps = connection.prepareStatement(GET_FIELD_FROM_TABLE);
 			resultSet = ps.executeQuery();
-			while(resultSet.next()) {
+			while(resultSet.next()){
 				String login = resultSet.getString(Constans.LOGIN_IND);
 				String test = resultSet.getString(Constans.TEST_IND);
 				Date date = resultSet.getDate(Constans.DATE_IND);
