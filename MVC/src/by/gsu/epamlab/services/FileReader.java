@@ -8,6 +8,7 @@ public class FileReader {
 	public String key2;
 	public int len;
 	public String[] keys;
+	public String type;
 
 	public String getFileName() {
 		return fileName;
@@ -17,11 +18,19 @@ public class FileReader {
 		this.fileName = fileName;
 	}
 	
+	
+	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	public String[] getLen(){
 		getLoadSettings();
-		for(String tmp: keys){
-			System.out.println(tmp);
-		}
+		
 		
 		return keys;
 	}
@@ -30,13 +39,13 @@ public class FileReader {
 		ResourceBundle resourcesBundle = ResourceBundle.getBundle(fileName);
 		
 		String key = resourcesBundle.getString("numbers");
-		 keys = key.split(",");
-		//String key = "ffdfdf";
+		String type = resourcesBundle.getString("control").trim();
+		
+		keys = key.split("[,\\s]+");
+		this.type = type;
 		this.len = keys.length; 
 		 
 		
 	}
-	public String[] getFriendsAsArray(){
-	    return new String[]{"Васька", "Петька", "Ленка"};
-	}
+	
 }

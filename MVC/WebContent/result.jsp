@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-${sum}
+${oper}${data}${result}
 </body>
 </html>
